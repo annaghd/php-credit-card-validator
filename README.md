@@ -11,7 +11,7 @@ Require the package in `composer.json`
 
 ```json
 "require": {
-    "inacho/php-credit-card-validator": "1.*"
+    "annaghd/php-credit-card-validator-plus": "1.*"
 },
 ```
 
@@ -83,13 +83,18 @@ bool(true)
 ### Validate the expiration date
 
 ```php
-$validDate = CreditCard::validDate('2013', '07'); // past date
-var_dump($validDate);
+$validMonth = CreditCard::validMonth('07'); // past date
+var_dump($validMonth);
+
+$validYear = CreditCard::validYear('2007'); // past date
+var_dump($validYear);
 ```
 
 Output:
 
 ```
+bool(false)
+
 bool(false)
 ```
 
