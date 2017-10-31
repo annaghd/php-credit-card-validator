@@ -150,7 +150,7 @@ class CreditCard
             return false;
         }
 
-        if ($year < date('Y') || $year == date('Y')) {
+        if ($year < date('Y')) {
             return false;
         }
 
