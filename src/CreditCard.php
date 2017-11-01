@@ -127,35 +127,30 @@ class CreditCard
         return (ctype_digit($cvc) && array_key_exists($type, self::$cards) && self::validCvcLength($cvc, $type));
     }
 
-    public static function validMonth($month)
+    public static function validDate($date)
     {
-        $month = str_pad($month, 2, '0', STR_PAD_LEFT);
+        $date_parts = explode("/", $date);
+        $month = $date_parts[0];
+        $year = $date_parts[1];
 
+        $month = str_pad($month, 2, '0', STR_PAD_LEFT);
 
         if (! preg_match('/^(0[1-9]|1[0-2])$/', $month)) {
             return false;
         }
 
-        if ($month < date('m')) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function validYear($year)
-    {
-
         if (! preg_match('/^20\d\d$/', $year)) {
             return false;
         }
 
-        if ($year < date('Y')) {
+        if ($year < date('Y') || $year == date('Y') && $month < date('m')) {
             return false;
         }
 
+
         return true;
-    }   
+    }
+
 
     // PROTECTED
     // ---------------------------------------------------------
